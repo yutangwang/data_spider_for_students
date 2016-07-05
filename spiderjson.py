@@ -29,6 +29,8 @@ def tokenchoice():
     else:
         print("You need Security_token.txt providing security token. Please contact me as soon as.")
 
+
+# print(tokenchoice())
 if os.path.isfile('chemspiderdb.json'):
     spiderjsonfileid = []
     with open('chemspiderdb.json', 'r') as jsonfile:
@@ -45,15 +47,15 @@ if os.path.isfile('chemspiderdb.json'):
         compound = cs.get_compound(csid)
         try:
             doc = {'_id': int(compound.csid), 'common_name': compound.common_name}
-            sleep(random.uniform(0.2, 1.2))
+            sleep(random.uniform(0.2, 0.5))
             doc['molecular_weight'] = compound.molecular_weight
-            sleep(random.uniform(0, 1.2))
+            sleep(random.uniform(0, 0.5))
             doc['molecular_formula'] = compound.molecular_formula
             doc['stdinchi'] = compound.stdinchi
             sleep(random.uniform(0.1, 0.5))
             doc['stdinchikey'] = compound.stdinchikey
             doc['smiles'] = compound.smiles
-            sleep(random.uniform(1, 5))
+            # sleep(random.uniform(1, 1.1))
             with open('chemspiderdb.json', 'a') as jsonfile:
                 json.dump(doc, jsonfile)
                 jsonfile.write('\n')
@@ -61,7 +63,7 @@ if os.path.isfile('chemspiderdb.json'):
         except Exception as e:
             print(str(e) + 'Invalid ID  is ' + str(compound.csid))
             with open('Invalid_ID.txt', 'a') as invalid_id:
-                invalid_id.write(str(compound.csid) + '\n' + str(e) )
+                invalid_id.write(str(compound.csid) + '\n' + str(e))
             continue
 else:
     for csid in csids:
@@ -70,15 +72,15 @@ else:
         compound = cs.get_compound(csid)
         try:
             doc = {'_id': int(compound.csid), 'common_name': compound.common_name}
-            sleep(random.uniform(0.2, 1.2))
+            sleep(random.uniform(0, 0.5))
             doc['molecular_weight'] = compound.molecular_weight
-            sleep(random.uniform(0, 1.2))
+            sleep(random.uniform(0, 0.5))
             doc['molecular_formula'] = compound.molecular_formula
             doc['stdinchi'] = compound.stdinchi
-            sleep(random.uniform(0, 1.2))
+            # sleep(random.uniform(0, 1.2))
             doc['stdinchikey'] = compound.stdinchikey
             doc['smiles'] = compound.smiles
-            sleep(random.uniform(1, 1.2))
+            # sleep(random.uniform(1, 1.2))
             with open('chemspiderdb.json', 'a') as jsonfile:
                 json.dump(doc, jsonfile)
                 jsonfile.write('\n')
